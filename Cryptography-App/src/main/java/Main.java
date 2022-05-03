@@ -94,9 +94,19 @@ public class Main {
         }
     }
 
+    public Main(int keySize) {
+        try {
+            cipher = Cipher.getInstance("RSA");
+            maxBytesDecrypt = (int) Math.floor((keySize/8.0));
+            maxBytesEncrypt = (int) Math.floor((keySize/8.0)) - 11;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         Security.addProvider(new BouncyCastleProvider());
-        new Main().run();
+        new Main(1024).run();
     }
 
 }
